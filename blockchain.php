@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class Block
+ */
 class Block
 {
     private $index;
@@ -8,6 +11,14 @@ class Block
     private $data;
     private $hash;
 
+    /**
+     * Block constructor.
+     * @param $index
+     * @param $previousHash
+     * @param $timestamp
+     * @param $data
+     * @param $hash
+     */
     function __construct($index, $previousHash, $timestamp, $data, $hash)
     {
         $this->index = $index;
@@ -17,47 +28,74 @@ class Block
         $this->hash = $hash;
     }
 
+    /**
+     * @return mixed
+     */
     function getIndex()
     {
         return $this->index;
     }
 
+    /**
+     * @return mixed
+     */
     function getPreviousHash()
     {
         return $this->previousHash;
     }
 
+    /**
+     * @return mixed
+     */
     function getTimestamp()
     {
         return $this->timestamp;
     }
 
+    /**
+     * @return mixed
+     */
     function getData()
     {
         return $this->data;
     }
 
+    /**
+     * @return mixed
+     */
     function getHash()
     {
         return $this->hash;
     }
 }
 
+/**
+ * Class Blockchain
+ */
 class Blockchain
 {
     private $blockchain = [];
 
+    /**
+     * Blockchain constructor.
+     */
     function __construct()
     {
         $this->blockchain[] = $this->getGenesisBlock();
     }
 
+    /**
+     * @return array
+     */
     function getBlockchain()
     {
         return $this->blockchain;
     }
 
     // Genesis block generation / acquisition
+    /**
+     * @return Block
+     */
     function getGenesisBlock(): Block
     {
         return new Block(
@@ -70,12 +108,23 @@ class Blockchain
     }
 
     // Hash generation
+    /**
+     * @param $index
+     * @param $previousHash
+     * @param $timestamp
+     * @param $data
+     * @return string
+     */
     function calculateHash($index, $previousHash, $timestamp, $data)
     {
         return hash('sha256', $index . $previousHash . $timestamp . $data);
     }
 
     // Generate hash from block
+    /**
+     * @param Block $block
+     * @return string
+     */
     function calculateHashForBlock(Block $block): string
     {
         return $this->calculateHash(
@@ -87,12 +136,19 @@ class Blockchain
     }
 
     // Get the last block of the blockchain
+    /**
+     * @return Block
+     */
     function getLatestBlock(): Block
     {
         return $this->blockchain[count($this->blockchain) - 1];
     }
 
     // Generate the next block
+    /**
+     * @param $blockData
+     * @return Block
+     */
     function generateNextBlock($blockData): Block
     {
         $previousBlock = $this->getLatestBlock();
@@ -103,6 +159,11 @@ class Blockchain
     }
 
     // Safety check of newly created block
+    /**
+     * @param $newBlock
+     * @param $previousBlock
+     * @return bool
+     */
     function isValidNewBlock($newBlock, $previousBlock)
     {
         if ($previousBlock->getIndex() + 1 !== $newBlock->getIndex()) {
@@ -119,6 +180,9 @@ class Blockchain
     }
 
     // Select longest chain
+    /**
+     * @param Blockchain $newBlockchain
+     */
     function replaceChain(Blockchain $newBlockchain)
     {
         $newBlocks = $newBlockchain->getBlockchain();
@@ -132,6 +196,10 @@ class Blockchain
     }
 
     // Validity check of block chain
+    /**
+     * @param Blockchain $blockchain
+     * @return bool
+     */
     function isValidChain(Blockchain $blockchain): bool
     {
         $blockchainToValidate = $blockchain->getBlockchain();
@@ -152,6 +220,9 @@ class Blockchain
     }
 
     // Block added to block chain
+    /**
+     * @param Block $newBlock
+     */
     function addBlock(Block $newBlock)
     {
         if ($this->isValidNewBlock($newBlock, $this->getLatestBlock())) {
@@ -159,6 +230,10 @@ class Blockchain
         }
     }
 
+    /**
+     * @param Blockchain $newBlockchain
+     * @param string $name
+     */
     function broadcast(Blockchain $newBlockchain, string $name)
     {
         echo "$name broadcast.\n";
