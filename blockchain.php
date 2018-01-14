@@ -70,9 +70,9 @@ class Blockchain
     }
 
     // Hash generation
-    function calculateHash($index, $previousHash, $timestamp, $data, $hash)
+    function calculateHash($index, $previousHash, $timestamp, $data)
     {
-        return hash('sha256', $index + $previousHash + $timestamp + $data + $hash);
+        return hash('sha256', $index . $previousHash . $timestamp . $data);
     }
 
     // Generate hash from block
@@ -97,7 +97,7 @@ class Blockchain
     {
         $previousBlock = $this->getLatestBlock();
         $nextIndex = $previousBlock->getIndex() + 1;
-        $nextTimestamp = (new DataTime())->getTimestamp() / 1000;
+        $nextTimestamp = (new DateTime())->getTimestamp() / 1000;
         $nextHash = $this->calculateHash($nextIndex, $previousBlock->getHash(), $nextTimestamp, $blockData);
         return new Block($nextIndex, $previousBlock->getHash(), $nextTimestamp, $blockData, $nextHash);
     }
@@ -143,7 +143,7 @@ class Blockchain
 
         // Check validity of all blocks
         foreach ($blockchainToValidate as $index => $blockToValidate) {
-            if (0 === $index || $this->isValidNewBlock($blockToValidate, $blockToValidate[$index - 1])) {
+            if (0 === $index || $this->isValidNewBlock($blockToValidate, $blockchainToValidate[$index - 1])) {
                 continue;
             }
             return false;
