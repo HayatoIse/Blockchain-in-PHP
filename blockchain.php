@@ -160,8 +160,8 @@ class Blockchain
 
     // Safety check of newly created block
     /**
-     * @param $newBlock
-     * @param $previousBlock
+     * @param Block $newBlock
+     * @param Block $previousBlock
      * @return bool
      */
     function isValidNewBlock($newBlock, $previousBlock)
