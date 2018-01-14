@@ -1,0 +1,94 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "d1b7c89bd4038ec95691e9db63b6c8db",
+    "packages": [
+        {
+            "name": "amphp/amp",
+            "version": "v2.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/amphp/amp.git",
+                "reference": "502b4be0008ed2f9479ad598187e49683ce6ef39"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/amphp/amp/zipball/502b4be0008ed2f9479ad598187e49683ce6ef39",
+                "reference": "502b4be0008ed2f9479ad598187e49683ce6ef39",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7"
+            },
+            "require-dev": {
+                "amphp/phpunit-util": "^1",
+                "friendsofphp/php-cs-fixer": "^2.3",
+                "phpstan/phpstan": "^0.8.5",
+                "phpunit/phpunit": "^6.0.9",
+                "react/promise": "^2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Amp\\": "lib"
+                },
+                "files": [
+                    "lib/functions.php",
+                    "lib/Internal/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bob Weinand",
+                    "email": "bobwei9@hotmail.com"
+                },
+                {
+                    "name": "Niklas Keller",
+                    "email": "me@kelunik.com"
+                },
+                {
+                    "name": "Daniel Lowrey",
+                    "email": "rdlowrey@php.net"
+                },
+                {
+                    "name": "Aaron Piotrowski",
+                    "email": "aaron@trowski.com"
+                }
+            ],
+            "description": "A non-blocking concurrency framework for PHP applications.",
+            "homepage": "http://amphp.org/amp",
+            "keywords": [
+                "async",
+                "asynchronous",
+                "awaitable",
+                "concurrency",
+                "event",
+                "event-loop",
+                "future",
+                "non-blocking",
+                "promise"
+            ],
+            "time": "2017-12-19T17:27:18+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
